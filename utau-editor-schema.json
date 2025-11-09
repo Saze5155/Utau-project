@@ -1,0 +1,1359 @@
+{
+  "version": 1,
+  "directus": "11.10.2",
+  "collections": [
+    {
+      "collection": "voicebanks",
+      "meta": {
+        "accountability": "all",
+        "collection": "voicebanks",
+        "group": null,
+        "hidden": false,
+        "icon": "record_voice_over",
+        "item_duplication_fields": null,
+        "note": "Banques vocales uploadées par les utilisateurs",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "voicebanks"
+      }
+    },
+    {
+      "collection": "projects",
+      "meta": {
+        "accountability": "all",
+        "collection": "projects",
+        "group": null,
+        "hidden": false,
+        "icon": "library_music",
+        "item_duplication_fields": null,
+        "note": "Projets musicaux créés par les utilisateurs",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "projects"
+      }
+    },
+    {
+      "collection": "notes",
+      "meta": {
+        "accountability": "all",
+        "collection": "notes",
+        "group": null,
+        "hidden": false,
+        "icon": "music_note",
+        "item_duplication_fields": null,
+        "note": "Notes musicales individuelles dans chaque projet",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "notes"
+      }
+    },
+    {
+      "collection": "tags",
+      "meta": {
+        "accountability": "all",
+        "collection": "tags",
+        "group": null,
+        "hidden": false,
+        "icon": "label",
+        "item_duplication_fields": null,
+        "note": "Tags pour catégoriser les projets (genre, langue, style)",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "tags"
+      }
+    },
+    {
+      "collection": "projects_tags",
+      "meta": {
+        "accountability": "all",
+        "collection": "projects_tags",
+        "group": null,
+        "hidden": true,
+        "icon": "import_export",
+        "item_duplication_fields": null,
+        "note": "Table de liaison pour la relation M2M projects-tags",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "projects_tags"
+      }
+    },
+    {
+      "collection": "projects_likes",
+      "meta": {
+        "accountability": "all",
+        "collection": "projects_likes",
+        "group": null,
+        "hidden": false,
+        "icon": "favorite",
+        "item_duplication_fields": null,
+        "note": "Système de likes pour les projets",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "projects_likes"
+      }
+    },
+    {
+      "collection": "collaborations",
+      "meta": {
+        "accountability": "all",
+        "collection": "collaborations",
+        "group": null,
+        "hidden": false,
+        "icon": "people",
+        "item_duplication_fields": null,
+        "note": "Système collaboratif avec permissions",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "collaborations"
+      }
+    },
+    {
+      "collection": "notifications",
+      "meta": {
+        "accountability": "all",
+        "collection": "notifications",
+        "group": null,
+        "hidden": false,
+        "icon": "notifications",
+        "item_duplication_fields": null,
+        "note": "Notifications temps réel pour les utilisateurs",
+        "singleton": false,
+        "translations": null
+      },
+      "schema": {
+        "name": "notifications"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "collection": "voicebanks",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "name",
+      "type": "string",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "placeholder": "Nom de la voicebank"
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "is_unique": true,
+        "max_length": 100
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "description",
+      "type": "text",
+      "meta": {
+        "interface": "input-rich-text-md",
+        "options": {
+          "placeholder": "Description de la voicebank..."
+        }
+      },
+      "schema": {}
+    },
+    {
+      "collection": "voicebanks",
+      "field": "language",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "required": true,
+        "options": {
+          "choices": [
+            {
+              "text": "Japonais",
+              "value": "ja"
+            },
+            {
+              "text": "Anglais",
+              "value": "en"
+            },
+            {
+              "text": "Français",
+              "value": "fr"
+            },
+            {
+              "text": "Chinois",
+              "value": "zh"
+            },
+            {
+              "text": "Coréen",
+              "value": "ko"
+            },
+            {
+              "text": "Espagnol",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "schema": {
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "voice_type",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "required": true,
+        "options": {
+          "choices": [
+            {
+              "text": "Masculin",
+              "value": "masculine"
+            },
+            {
+              "text": "Féminin",
+              "value": "feminine"
+            },
+            {
+              "text": "Neutre",
+              "value": "neutral"
+            }
+          ]
+        }
+      },
+      "schema": {
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "author",
+      "type": "string",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "placeholder": "Nom de l'auteur de la voicebank"
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "max_length": 100
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "cover_image",
+      "type": "uuid",
+      "meta": {
+        "interface": "file-image",
+        "special": ["file"]
+      },
+      "schema": {}
+    },
+    {
+      "collection": "voicebanks",
+      "field": "sample_files",
+      "type": "uuid",
+      "meta": {
+        "interface": "file",
+        "required": true,
+        "special": ["file"],
+        "note": "Fichier ZIP contenant les samples WAV"
+      },
+      "schema": {}
+    },
+    {
+      "collection": "voicebanks",
+      "field": "downloads",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "readonly": true,
+        "options": {
+          "min": 0
+        }
+      },
+      "schema": {
+        "default_value": 0
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "user_created",
+      "type": "uuid",
+      "meta": {
+        "special": ["user-created"],
+        "interface": "select-dropdown-m2o",
+        "options": {
+          "template": "{{first_name}} {{last_name}}"
+        },
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "voicebanks",
+      "field": "date_created",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-created"],
+        "interface": "datetime",
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "voicebanks",
+      "field": "date_updated",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-updated"],
+        "interface": "datetime",
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "title",
+      "type": "string",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "placeholder": "Titre du projet musical"
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "max_length": 255
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "description",
+      "type": "text",
+      "meta": {
+        "interface": "input-rich-text-md",
+        "options": {
+          "placeholder": "Description du projet..."
+        }
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "tempo",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "options": {
+          "min": 40,
+          "max": 300,
+          "placeholder": "BPM (40-300)"
+        },
+        "note": "Tempo en BPM (Beats Per Minute)"
+      },
+      "schema": {
+        "default_value": 120
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "key_signature",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "options": {
+          "choices": [
+            {
+              "text": "C (Do majeur)",
+              "value": "C"
+            },
+            {
+              "text": "C# (Do# majeur)",
+              "value": "C#"
+            },
+            {
+              "text": "D (Ré majeur)",
+              "value": "D"
+            },
+            {
+              "text": "D# (Ré# majeur)",
+              "value": "D#"
+            },
+            {
+              "text": "E (Mi majeur)",
+              "value": "E"
+            },
+            {
+              "text": "F (Fa majeur)",
+              "value": "F"
+            },
+            {
+              "text": "F# (Fa# majeur)",
+              "value": "F#"
+            },
+            {
+              "text": "G (Sol majeur)",
+              "value": "G"
+            },
+            {
+              "text": "G# (Sol# majeur)",
+              "value": "G#"
+            },
+            {
+              "text": "A (La majeur)",
+              "value": "A"
+            },
+            {
+              "text": "A# (La# majeur)",
+              "value": "A#"
+            },
+            {
+              "text": "B (Si majeur)",
+              "value": "B"
+            }
+          ]
+        }
+      },
+      "schema": {
+        "default_value": "C"
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "duration",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "readonly": true,
+        "note": "Durée en millisecondes (calculée automatiquement)"
+      },
+      "schema": {
+        "default_value": 0
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "rendered_audio",
+      "type": "uuid",
+      "meta": {
+        "interface": "file",
+        "special": ["file"],
+        "note": "Fichier audio final généré"
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "cover_image",
+      "type": "uuid",
+      "meta": {
+        "interface": "file-image",
+        "special": ["file"]
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "status",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "options": {
+          "choices": [
+            {
+              "text": "Publié",
+              "value": "published"
+            },
+            {
+              "text": "Brouillon",
+              "value": "draft"
+            },
+            {
+              "text": "Archivé",
+              "value": "archived"
+            }
+          ]
+        }
+      },
+      "schema": {
+        "default_value": "draft"
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "plays",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "readonly": true,
+        "options": {
+          "min": 0
+        }
+      },
+      "schema": {
+        "default_value": 0
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "likes",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "readonly": true,
+        "options": {
+          "min": 0
+        }
+      },
+      "schema": {
+        "default_value": 0
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "primary_voicebank",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "display": "related-values",
+        "display_options": {
+          "template": "{{name}}"
+        }
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "user_created",
+      "type": "uuid",
+      "meta": {
+        "special": ["user-created"],
+        "interface": "select-dropdown-m2o",
+        "options": {
+          "template": "{{first_name}} {{last_name}}"
+        },
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "date_created",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-created"],
+        "interface": "datetime",
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects",
+      "field": "date_updated",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-updated"],
+        "interface": "datetime",
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notes",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "project_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notes",
+      "field": "start_time",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "min": 0,
+          "placeholder": "Position en millisecondes"
+        },
+        "note": "Position de début en millisecondes depuis le début du projet"
+      },
+      "schema": {
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "duration",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "min": 1,
+          "placeholder": "Durée en millisecondes"
+        },
+        "note": "Durée de la note en millisecondes"
+      },
+      "schema": {
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "pitch",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "min": 0,
+          "max": 127,
+          "placeholder": "Note MIDI (0-127)"
+        },
+        "note": "Hauteur de note MIDI (0-127, où 60 = C4)"
+      },
+      "schema": {
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "lyrics",
+      "type": "string",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "placeholder": "Paroles / Phonèmes"
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "max_length": 500
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "velocity",
+      "type": "integer",
+      "meta": {
+        "interface": "slider",
+        "options": {
+          "min": 0,
+          "max": 127
+        },
+        "note": "Vélocité / Volume (0-127)"
+      },
+      "schema": {
+        "default_value": 100
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "audio_params",
+      "type": "json",
+      "meta": {
+        "interface": "input-code",
+        "options": {
+          "language": "json",
+          "placeholder": "{ \"vibrato\": 0, \"tremolo\": 0 }"
+        },
+        "note": "Paramètres audio (vibrato, tremolo, etc.)"
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notes",
+      "field": "voicebank_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true,
+        "display": "related-values",
+        "display_options": {
+          "template": "{{name}}"
+        }
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notes",
+      "field": "order_index",
+      "type": "integer",
+      "meta": {
+        "interface": "input",
+        "readonly": true,
+        "note": "Index d'ordre dans le projet"
+      },
+      "schema": {
+        "default_value": 0
+      }
+    },
+    {
+      "collection": "tags",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "tags",
+      "field": "name",
+      "type": "string",
+      "meta": {
+        "interface": "input",
+        "required": true,
+        "options": {
+          "placeholder": "Nom du tag (genre, langue, style...)"
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "is_unique": true,
+        "max_length": 50
+      }
+    },
+    {
+      "collection": "tags",
+      "field": "date_created",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-created"],
+        "interface": "datetime",
+        "readonly": true,
+        "hidden": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects_tags",
+      "field": "id",
+      "type": "integer",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": true,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "projects_tags",
+      "field": "projects_id",
+      "type": "uuid",
+      "meta": {},
+      "schema": {}
+    },
+    {
+      "collection": "projects_tags",
+      "field": "tags_id",
+      "type": "uuid",
+      "meta": {},
+      "schema": {}
+    },
+    {
+      "collection": "projects_likes",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "projects_likes",
+      "field": "project_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects_likes",
+      "field": "user_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "projects_likes",
+      "field": "date_created",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-created"],
+        "interface": "datetime",
+        "readonly": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "collaborations",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "collaborations",
+      "field": "project_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "collaborations",
+      "field": "user_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "collaborations",
+      "field": "permission_level",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "required": true,
+        "options": {
+          "choices": [
+            {
+              "text": "Lecture seule",
+              "value": "read"
+            },
+            {
+              "text": "Écriture",
+              "value": "write"
+            },
+            {
+              "text": "Administrateur",
+              "value": "admin"
+            }
+          ]
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "default_value": "read"
+      }
+    },
+    {
+      "collection": "collaborations",
+      "field": "status",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "required": true,
+        "options": {
+          "choices": [
+            {
+              "text": "Invité",
+              "value": "invited"
+            },
+            {
+              "text": "Accepté",
+              "value": "accepted"
+            },
+            {
+              "text": "Refusé",
+              "value": "declined"
+            }
+          ]
+        }
+      },
+      "schema": {
+        "is_nullable": false,
+        "default_value": "invited"
+      }
+    },
+    {
+      "collection": "collaborations",
+      "field": "invited_by",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true,
+        "options": {
+          "template": "{{first_name}} {{last_name}}"
+        }
+      },
+      "schema": {}
+    },
+    {
+      "collection": "collaborations",
+      "field": "date_invited",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-created"],
+        "interface": "datetime",
+        "readonly": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "collaborations",
+      "field": "date_responded",
+      "type": "timestamp",
+      "meta": {
+        "interface": "datetime"
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notifications",
+      "field": "id",
+      "type": "uuid",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "readonly": true,
+        "special": ["uuid"]
+      },
+      "schema": {
+        "is_primary_key": true,
+        "has_auto_increment": false,
+        "is_nullable": false
+      }
+    },
+    {
+      "collection": "notifications",
+      "field": "user_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o",
+        "required": true
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notifications",
+      "field": "message",
+      "type": "string",
+      "meta": {
+        "interface": "input",
+        "required": true
+      },
+      "schema": {
+        "is_nullable": false,
+        "max_length": 255
+      }
+    },
+    {
+      "collection": "notifications",
+      "field": "project_id",
+      "type": "uuid",
+      "meta": {
+        "interface": "select-dropdown-m2o"
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notifications",
+      "field": "event_type",
+      "type": "string",
+      "meta": {
+        "interface": "select-dropdown",
+        "options": {
+          "choices": [
+            {
+              "text": "Nouveau projet",
+              "value": "nouveau_projet"
+            },
+            {
+              "text": "Collaboration",
+              "value": "collaboration"
+            },
+            {
+              "text": "Nouveau like",
+              "value": "nouveau_like"
+            },
+            {
+              "text": "Nouveau commentaire",
+              "value": "nouveau_commentaire"
+            }
+          ]
+        }
+      },
+      "schema": {}
+    },
+    {
+      "collection": "notifications",
+      "field": "is_read",
+      "type": "boolean",
+      "meta": {
+        "interface": "boolean"
+      },
+      "schema": {
+        "default_value": false
+      }
+    },
+    {
+      "collection": "notifications",
+      "field": "date_created",
+      "type": "timestamp",
+      "meta": {
+        "special": ["date-created"],
+        "interface": "datetime",
+        "readonly": true
+      },
+      "schema": {}
+    }
+  ],
+  "relations": [
+    {
+      "collection": "voicebanks",
+      "field": "cover_image",
+      "related_collection": "directus_files",
+      "meta": {
+        "many_collection": "voicebanks",
+        "many_field": "cover_image",
+        "one_collection": "directus_files"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "sample_files",
+      "related_collection": "directus_files",
+      "meta": {
+        "many_collection": "voicebanks",
+        "many_field": "sample_files",
+        "one_collection": "directus_files"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "voicebanks",
+      "field": "user_created",
+      "related_collection": "directus_users",
+      "meta": {
+        "many_collection": "voicebanks",
+        "many_field": "user_created",
+        "one_collection": "directus_users"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "rendered_audio",
+      "related_collection": "directus_files",
+      "meta": {
+        "many_collection": "projects",
+        "many_field": "rendered_audio",
+        "one_collection": "directus_files"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "cover_image",
+      "related_collection": "directus_files",
+      "meta": {
+        "many_collection": "projects",
+        "many_field": "cover_image",
+        "one_collection": "directus_files"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "primary_voicebank",
+      "related_collection": "voicebanks",
+      "meta": {
+        "many_collection": "projects",
+        "many_field": "primary_voicebank",
+        "one_collection": "voicebanks",
+        "one_field": "projects_using"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "projects",
+      "field": "user_created",
+      "related_collection": "directus_users",
+      "meta": {
+        "many_collection": "projects",
+        "many_field": "user_created",
+        "one_collection": "directus_users"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "project_id",
+      "related_collection": "projects",
+      "meta": {
+        "many_collection": "notes",
+        "many_field": "project_id",
+        "one_collection": "projects",
+        "one_field": "notes"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "notes",
+      "field": "voicebank_id",
+      "related_collection": "voicebanks",
+      "meta": {
+        "many_collection": "notes",
+        "many_field": "voicebank_id",
+        "one_collection": "voicebanks"
+      },
+      "schema": {
+        "on_delete": "RESTRICT"
+      }
+    },
+    {
+      "collection": "projects_tags",
+      "field": "projects_id",
+      "related_collection": "projects",
+      "meta": {
+        "many_collection": "projects_tags",
+        "many_field": "projects_id",
+        "one_collection": "projects",
+        "junction_field": "tags_id"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "projects_tags",
+      "field": "tags_id",
+      "related_collection": "tags",
+      "meta": {
+        "many_collection": "projects_tags",
+        "many_field": "tags_id",
+        "one_collection": "tags",
+        "junction_field": "projects_id"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "projects_likes",
+      "field": "project_id",
+      "related_collection": "projects",
+      "meta": {
+        "many_collection": "projects_likes",
+        "many_field": "project_id",
+        "one_collection": "projects",
+        "one_field": "projects_likes"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "projects_likes",
+      "field": "user_id",
+      "related_collection": "directus_users",
+      "meta": {
+        "many_collection": "projects_likes",
+        "many_field": "user_id",
+        "one_collection": "directus_users",
+        "one_field": "user_likes"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "collaborations",
+      "field": "project_id",
+      "related_collection": "projects",
+      "meta": {
+        "many_collection": "collaborations",
+        "many_field": "project_id",
+        "one_collection": "projects",
+        "one_field": "collaborations"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "collaborations",
+      "field": "user_id",
+      "related_collection": "directus_users",
+      "meta": {
+        "many_collection": "collaborations",
+        "many_field": "user_id",
+        "one_collection": "directus_users",
+        "one_field": "collaborations"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "collaborations",
+      "field": "invited_by",
+      "related_collection": "directus_users",
+      "meta": {
+        "many_collection": "collaborations",
+        "many_field": "invited_by",
+        "one_collection": "directus_users"
+      },
+      "schema": {
+        "on_delete": "RESTRICT"
+      }
+    },
+    {
+      "collection": "notifications",
+      "field": "user_id",
+      "related_collection": "directus_users",
+      "meta": {
+        "many_collection": "notifications",
+        "many_field": "user_id",
+        "one_collection": "directus_users",
+        "one_field": "notifications"
+      },
+      "schema": {
+        "on_delete": "CASCADE"
+      }
+    },
+    {
+      "collection": "notifications",
+      "field": "project_id",
+      "related_collection": "projects",
+      "meta": {
+        "many_collection": "notifications",
+        "many_field": "project_id",
+        "one_collection": "projects"
+      },
+      "schema": {
+        "on_delete": "SET NULL"
+      }
+    }
+  ]
+}
