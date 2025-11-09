@@ -1,0 +1,1109 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-01-15T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_auth_login",
+      "parentId": "fld_auth",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/auth/login",
+      "name": "Login (Email/Password)",
+      "description": "Connexion avec email et mot de passe pour obtenir un JWT token",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705276800000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_auth_refresh",
+      "parentId": "fld_auth",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/auth/refresh",
+      "name": "Refresh Token",
+      "description": "Renouveler le JWT token avec le refresh token",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"refresh_token\": \"{{ _.refresh_token }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705276700000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_auth_logout",
+      "parentId": "fld_auth",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/auth/logout",
+      "name": "Logout",
+      "description": "Déconnexion et invalidation du token",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"refresh_token\": \"{{ _.refresh_token }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705276600000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_files_upload",
+      "parentId": "fld_files",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/files",
+      "name": "Upload File (Image/Audio/ZIP)",
+      "description": "Upload d'un fichier (image, audio, ZIP de samples)",
+      "method": "POST",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "name": "file",
+            "value": "",
+            "description": "Sélectionner un fichier à uploader",
+            "type": "file",
+            "fileName": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "multipart/form-data"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705276500000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_files_get",
+      "parentId": "fld_files",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/assets/{{ _.file_id }}",
+      "name": "Get File",
+      "description": "Récupérer un fichier uploadé",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705276400000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_files_transform",
+      "parentId": "fld_files",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/assets/{{ _.file_id }}?width=400&height=400&fit=cover&quality=85&format=webp",
+      "name": "Transform Image",
+      "description": "Transformation d'image à la volée",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "width",
+          "value": "400"
+        },
+        {
+          "name": "height",
+          "value": "400"
+        },
+        {
+          "name": "fit",
+          "value": "cover"
+        },
+        {
+          "name": "quality",
+          "value": "85"
+        },
+        {
+          "name": "format",
+          "value": "webp"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705276300000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_list",
+      "parentId": "fld_tags",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/tags",
+      "name": "List All Tags",
+      "description": "Lister tous les tags",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705276200000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_get",
+      "parentId": "fld_tags",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/tags/{{ _.tag_id }}",
+      "name": "Get Tag by ID",
+      "description": "Récupérer un tag spécifique",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705276100000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_create",
+      "parentId": "fld_tags",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/tags",
+      "name": "Create Tag",
+      "description": "Créer un nouveau tag",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"jpop\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705276000000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_update",
+      "parentId": "fld_tags",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/tags/{{ _.tag_id }}",
+      "name": "Update Tag",
+      "description": "Modifier un tag existant",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"j-pop\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705275900000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_delete",
+      "parentId": "fld_tags",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/tags/{{ _.tag_id }}",
+      "name": "Delete Tag",
+      "description": "Supprimer un tag",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705275800000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_voicebanks_list",
+      "parentId": "fld_voicebanks",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/voicebanks",
+      "name": "List All Voicebanks",
+      "description": "Lister toutes les voicebanks",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705275700000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_voicebanks_get",
+      "parentId": "fld_voicebanks",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/voicebanks/{{ _.voicebank_id }}?fields=*,user_created.first_name,user_created.last_name",
+      "name": "Get Voicebank by ID",
+      "description": "Récupérer une voicebank avec les infos du créateur",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "fields",
+          "value": "*,user_created.first_name,user_created.last_name"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705275600000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_voicebanks_create",
+      "parentId": "fld_voicebanks",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/voicebanks",
+      "name": "Create Voicebank",
+      "description": "Créer une nouvelle voicebank (upload le ZIP de samples d'abord)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Hatsune Miku\",\n  \"description\": \"Voicebank japonaise iconique\",\n  \"language\": \"ja\",\n  \"voice_type\": \"feminine\",\n  \"author\": \"Crypton Future Media\",\n  \"sample_files\": \"{{ _.file_id }}\",\n  \"cover_image\": \"{{ _.cover_image_id }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705275500000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_voicebanks_update",
+      "parentId": "fld_voicebanks",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/voicebanks/{{ _.voicebank_id }}",
+      "name": "Update Voicebank",
+      "description": "Modifier une voicebank existante",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"description\": \"Description mise à jour\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705275400000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_voicebanks_delete",
+      "parentId": "fld_voicebanks",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/voicebanks/{{ _.voicebank_id }}",
+      "name": "Delete Voicebank",
+      "description": "Supprimer une voicebank",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705275300000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_projects_list",
+      "parentId": "fld_projects",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects?fields=*,primary_voicebank.name,user_created.first_name,user_created.last_name,tags.tags_id.name",
+      "name": "List All Projects",
+      "description": "Lister tous les projets avec relations",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "fields",
+          "value": "*,primary_voicebank.name,user_created.first_name,user_created.last_name,tags.tags_id.name"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705275200000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_projects_get",
+      "parentId": "fld_projects",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects/{{ _.project_id }}?fields=*,primary_voicebank.*,user_created.*,tags.tags_id.*,notes.*,notes.voicebank_id.name",
+      "name": "Get Project by ID (with Notes)",
+      "description": "Récupérer un projet complet avec toutes les notes musicales",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "fields",
+          "value": "*,primary_voicebank.*,user_created.*,tags.tags_id.*,notes.*,notes.voicebank_id.name"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705275100000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_projects_create",
+      "parentId": "fld_projects",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects",
+      "name": "Create Project",
+      "description": "Créer un nouveau projet musical",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"My First UTAU Song\",\n  \"description\": \"Premier test de composition\",\n  \"tempo\": 120,\n  \"key_signature\": \"C\",\n  \"status\": \"draft\",\n  \"primary_voicebank\": \"{{ _.voicebank_id }}\",\n  \"tags\": [\n    { \"tags_id\": \"{{ _.tag_jpop_id }}\" },\n    { \"tags_id\": \"{{ _.tag_original_id }}\" }\n  ]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705275000000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_projects_update",
+      "parentId": "fld_projects",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects/{{ _.project_id }}",
+      "name": "Update Project",
+      "description": "Modifier un projet existant",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"My Updated Song Title\",\n  \"tempo\": 140,\n  \"status\": \"published\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274900000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_projects_delete",
+      "parentId": "fld_projects",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects/{{ _.project_id }}",
+      "name": "Delete Project",
+      "description": "Supprimer un projet (supprime aussi toutes ses notes)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274800000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notes_list",
+      "parentId": "fld_notes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notes?filter[project_id][_eq]={{ _.project_id }}&sort=start_time",
+      "name": "List Notes for Project",
+      "description": "Lister toutes les notes d'un projet triées par temps",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "filter[project_id][_eq]",
+          "value": "{{ _.project_id }}"
+        },
+        {
+          "name": "sort",
+          "value": "start_time"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705274700000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notes_get",
+      "parentId": "fld_notes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notes/{{ _.note_id }}?fields=*,voicebank_id.name,project_id.title",
+      "name": "Get Note by ID",
+      "description": "Récupérer une note spécifique",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "fields",
+          "value": "*,voicebank_id.name,project_id.title"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705274600000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notes_create",
+      "parentId": "fld_notes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notes",
+      "name": "Create Note",
+      "description": "Créer une nouvelle note musicale",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"project_id\": \"{{ _.project_id }}\",\n  \"start_time\": 0,\n  \"duration\": 500,\n  \"pitch\": 60,\n  \"lyrics\": \"te\",\n  \"velocity\": 100,\n  \"voicebank_id\": \"{{ _.voicebank_id }}\",\n  \"audio_params\": {\n    \"vibrato\": 0,\n    \"tremolo\": 0\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274500000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notes_create_multiple",
+      "parentId": "fld_notes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notes",
+      "name": "Create Multiple Notes (Melody)",
+      "description": "Créer plusieurs notes d'un coup pour former une mélodie",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "[\n  {\n    \"project_id\": \"{{ _.project_id }}\",\n    \"start_time\": 0,\n    \"duration\": 500,\n    \"pitch\": 60,\n    \"lyrics\": \"te\",\n    \"velocity\": 100,\n    \"voicebank_id\": \"{{ _.voicebank_id }}\"\n  },\n  {\n    \"project_id\": \"{{ _.project_id }}\",\n    \"start_time\": 500,\n    \"duration\": 500,\n    \"pitch\": 62,\n    \"lyrics\": \"su\",\n    \"velocity\": 100,\n    \"voicebank_id\": \"{{ _.voicebank_id }}\"\n  },\n  {\n    \"project_id\": \"{{ _.project_id }}\",\n    \"start_time\": 1000,\n    \"duration\": 1000,\n    \"pitch\": 64,\n    \"lyrics\": \"to\",\n    \"velocity\": 110,\n    \"voicebank_id\": \"{{ _.voicebank_id }}\"\n  }\n]"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274450000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notes_update",
+      "parentId": "fld_notes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notes/{{ _.note_id }}",
+      "name": "Update Note",
+      "description": "Modifier une note existante",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"pitch\": 65,\n  \"lyrics\": \"tsu\",\n  \"velocity\": 120\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274400000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notes_delete",
+      "parentId": "fld_notes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notes/{{ _.note_id }}",
+      "name": "Delete Note",
+      "description": "Supprimer une note",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274300000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_likes_list",
+      "parentId": "fld_likes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects_likes?fields=*,project_id.title,user_id.first_name,user_id.last_name",
+      "name": "List All Likes",
+      "description": "Lister tous les likes",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "fields",
+          "value": "*,project_id.title,user_id.first_name,user_id.last_name"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1705274200000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_likes_create",
+      "parentId": "fld_likes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects_likes",
+      "name": "Like a Project",
+      "description": "Liker un projet",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"project_id\": \"{{ _.project_id }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274100000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_likes_delete",
+      "parentId": "fld_likes",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/projects_likes/{{ _.like_id }}",
+      "name": "Unlike a Project",
+      "description": "Retirer son like",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705274000000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_collaborations_list",
+      "parentId": "fld_collaborations",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/collaborations?fields=*,project_id.title,user_id.first_name,user_id.last_name,invited_by.first_name,invited_by.last_name",
+      "name": "List All Collaborations",
+      "description": "Lister toutes les collaborations",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "fields",
+          "value": "*,project_id.title,user_id.first_name,user_id.last_name,invited_by.first_name,invited_by.last_name"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273900000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_collaborations_create",
+      "parentId": "fld_collaborations",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/collaborations",
+      "name": "Invite Collaborator",
+      "description": "Inviter un utilisateur à collaborer",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"project_id\": \"{{ _.project_id }}\",\n  \"user_id\": \"{{ _.collaborator_user_id }}\",\n  \"permission_level\": \"write\",\n  \"status\": \"invited\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273800000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_collaborations_accept",
+      "parentId": "fld_collaborations",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/collaborations/{{ _.collaboration_id }}",
+      "name": "Accept Collaboration",
+      "description": "Accepter une invitation à collaborer",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"accepted\",\n  \"date_responded\": \"$NOW\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273700000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_collaborations_decline",
+      "parentId": "fld_collaborations",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/collaborations/{{ _.collaboration_id }}",
+      "name": "Decline Collaboration",
+      "description": "Refuser une invitation",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"declined\",\n  \"date_responded\": \"$NOW\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273600000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_collaborations_delete",
+      "parentId": "fld_collaborations",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/collaborations/{{ _.collaboration_id }}",
+      "name": "Remove Collaborator",
+      "description": "Retirer un collaborateur",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273500000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notifications_list",
+      "parentId": "fld_notifications",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notifications?filter[user_id][_eq]=$CURRENT_USER&sort=-date_created",
+      "name": "List My Notifications",
+      "description": "Lister mes notifications (les plus récentes en premier)",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "filter[user_id][_eq]",
+          "value": "$CURRENT_USER"
+        },
+        {
+          "name": "sort",
+          "value": "-date_created"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273400000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notifications_unread",
+      "parentId": "fld_notifications",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notifications?filter[user_id][_eq]=$CURRENT_USER&filter[is_read][_eq]=false",
+      "name": "List Unread Notifications",
+      "description": "Lister uniquement les notifications non lues",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "filter[user_id][_eq]",
+          "value": "$CURRENT_USER"
+        },
+        {
+          "name": "filter[is_read][_eq]",
+          "value": "false"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273300000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notifications_mark_read",
+      "parentId": "fld_notifications",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notifications/{{ _.notification_id }}",
+      "name": "Mark as Read",
+      "description": "Marquer une notification comme lue",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"is_read\": true\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273200000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_notifications_delete",
+      "parentId": "fld_notifications",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "url": "{{ _.base_url }}/items/notifications/{{ _.notification_id }}",
+      "name": "Delete Notification",
+      "description": "Supprimer une notification",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -1705273100000,
+      "_type": "request"
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "🔐 Authentication",
+      "description": "Endpoints d'authentification",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276800000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_files",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "📁 Files Management",
+      "description": "Upload et gestion des fichiers",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276700000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_tags",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "🏷️ Tags",
+      "description": "CRUD Tags (genres, langues, styles)",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276600000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_voicebanks",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "🗣️ Voicebanks",
+      "description": "CRUD Voicebanks",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276500000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_projects",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "🎵 Projects",
+      "description": "CRUD Projets musicaux",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276400000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_notes",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "🎼 Notes",
+      "description": "CRUD Notes musicales",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276300000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_likes",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "❤️ Likes",
+      "description": "Système de likes",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276200000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_collaborations",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "👥 Collaborations",
+      "description": "Système collaboratif",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276100000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_notifications",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "🔔 Notifications",
+      "description": "Système de notifications",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705276000000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_utau",
+      "parentId": null,
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "UTAU Editor API",
+      "description": "Collection complète d'endpoints pour l'API UTAU Editor",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_utau",
+      "parentId": "wrk_utau",
+      "modified": 1705276800000,
+      "created": 1705276800000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8055",
+        "access_token": "",
+        "refresh_token": "",
+        "file_id": "",
+        "cover_image_id": "",
+        "tag_id": "",
+        "tag_jpop_id": "",
+        "tag_original_id": "",
+        "voicebank_id": "",
+        "project_id": "",
+        "note_id": "",
+        "like_id": "",
+        "collaboration_id": "",
+        "collaborator_user_id": "",
+        "notification_id": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "access_token",
+          "refresh_token",
+          "file_id",
+          "cover_image_id",
+          "tag_id",
+          "tag_jpop_id",
+          "tag_original_id",
+          "voicebank_id",
+          "project_id",
+          "note_id",
+          "like_id",
+          "collaboration_id",
+          "collaborator_user_id",
+          "notification_id"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1705276800000,
+      "_type": "environment"
+    }
+  ]
+}
