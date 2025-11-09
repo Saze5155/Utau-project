@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Database (à ne pas commit)
+data/
+*.db
+*.sqlite
+
+# Uploads (fichiers utilisateurs)
+uploads/
+
+# Extensions compilées (optionnel selon ton choix)
+extensions/*/dist/
+extensions/*/node_modules/
+
+# IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Scripts de setup locaux (garde les versions finales)
+setup-permissions.js
+setup-utau-windows.bat
+utau-editor-schema.json
+fix-*.js
+*.bak
+
+# OS
+Thumbs.db

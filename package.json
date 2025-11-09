@@ -1,0 +1,13 @@
+{
+  "name": "utau-editor-backend",
+  "version": "1.0.0",
+  "description": "Backend Directus pour UTAU Editor",
+  "scripts": {
+    "start": "directus start",
+    "dev": "directus start"
+  },
+  "dependencies": {
+    "directus": "latest",
+    "sharp": "^0.34.4"
+  }
+}
